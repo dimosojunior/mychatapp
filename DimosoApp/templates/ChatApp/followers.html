@@ -1,0 +1,96 @@
+{% extends 'DimosoApp/base2.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style type="text/css">
+		*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* kwa ajili ya kuadd watu wa kuwafollow */
+.follow{
+    
+        display: flex;
+    overflow-x: auto;
+    height: 6cm;
+}
+.follow::-webkit-scrollbar{
+    width: 0;
+}
+.follow .People{
+    min-width: 150px;
+    height: 150px;
+    line-height: 50px;
+    text-align: center;
+    background-color: ;
+    margin-right: 1cm;
+}
+
+
+	</style>
+</head>
+<body style="background-color: ;">
+
+
+{% include 'DimosoApp/include.html' %}
+
+
+<!---kwa ajili ya kudisplay watu wa kuwafollow---->
+
+
+
+{% if user_following %}
+
+<div class="container-fluid" style="margin-top: ;">
+  <h1 style="text-align:center;font-weight: bold;font-family: bold;color: white;background-color: red">{{user.username}} Followers</h1>
+
+          
+  <div class="follow" style="margin-top: 1cm;">
+    {% for x in user_following %}
+  <div class="People">
+    <a href="/profile/{{x.follower}}">
+     <img src="{{x.profileimg.url}}" class="rounded-circle" style="width: 100px;height: 100px;"></a><br>
+     <a href="/profile/{{x.follower}}" class="btn-primary" style="padding: 5px;border-radius: 10px;border-top-right-radius: 0px;margin-bottom: 0cm;margin-top:;text-decoration: none;">{{x.follower}} </a> 
+             
+
+  </div><!--mwisho wa div ya people--->
+  {% endfor %}
+  
+  </div><!---mwisho wa div ya follow-->
+  
+         
+
+
+
+  
+</div><!---mwisho wa container-fluid--->
+{% else %}
+
+<h1 style="color: white;text-align: center;">No Follower</h1>
+
+ {% endif %}
+
+
+
+<!--mwisho wa kudisplay watu wa kuwafollow----->
+
+
+
+
+
+
+
+</body>
+</html>
+{% endblock %}
